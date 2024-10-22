@@ -1,34 +1,53 @@
 package com.udea.gestiondevuelos.Domain.DTO;
 
 import com.udea.gestiondevuelos.Domain.Enums.FlightType;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class FlightDTO {
+
     private Long id;
 
+    @NotNull(message = "El numero de vuelo no puede ser nulo")
+    @Pattern(regexp = "SA[0-9]{4}",message = "El numero de vuelo debe tener el formato SA seguido de 4 digitos")
     private String flightNumber;
 
+    @NotNull(message = "El tipo de vuelo no puede ser nulo")
     private FlightType flightType;
 
+    @NotNull(message = "La ciudad de salida no puede ser nula")
+    @Pattern(regexp="^[A-Z]{3}", message = "La ciudad de salida debe tener 3 letras mayusculas")
     private String departureCity;
 
+    @NotNull(message = "La ciudad de destino no puede ser nula")
+    @Pattern(regexp="^[A-Z]{3}",message = "La ciudad de destino debe tener 3 letras mayusculas")
     private String destinationCity;
 
+    @NotNull(message = "El id de la aeronave no puede ser nulo")
     private Long aircraftId;
 
+    @NotNull(message = "La fecha de salida no puede ser nula")
     private LocalDate departureDate;
-
+    @NotNull(message = "La fecha de llegada no puede ser nula")
     private LocalDate arrivalDate;
-
+    @NotNull(message = "La hora de salida no puede ser nula")
     private LocalTime departureTime;
-
+    @NotNull(message = "La hora de llegada no puede ser nula")
     private LocalTime arrivalTime;
-
+    @NotNull(message = "El precio no puede ser nulo")
+    @Min(150000)
+    @Max(10000000)
     private Float price;
-
+    @NotNull(message = "El porcentaje de impuestos no puede ser nulo")
+    @Min(1)
     private Float taxPercentage;
-
+    @NotNull(message = "El recargo no puede ser nulo")
+    @Min(1)
     private Float surcharge;
 
     public FlightDTO(){}

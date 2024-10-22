@@ -4,13 +4,19 @@ import com.udea.gestiondevuelos.Domain.Enums.AircraftModel;
 import com.udea.gestiondevuelos.Domain.Enums.SeatConfiguration;
 import com.udea.gestiondevuelos.Domain.DTO.FlightDTO;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AircraftDTO {
     private Long id;
+    @NotNull(message = "El modelo de la aeronave no puede ser nulo")
     private AircraftModel aircraftModel;
+    @NotNull(message = "El numero maximo de asientos no puede ser nulo")
+    @Min(0)
     private Integer maxSeats;
+    @NotNull(message = "La configuracion de asientos no puede ser nula")
     private SeatConfiguration seatConfiguration;
     private List<FlightDTO> flights = new ArrayList<>();
 
