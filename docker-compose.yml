@@ -1,0 +1,14 @@
+name: gestion-vuelos-a
+services:
+  springboot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002" #puerto correspondiente
+    networks:
+      - my_bridge_network
+
+networks:
+  my_bridge_network:
+    external: true
