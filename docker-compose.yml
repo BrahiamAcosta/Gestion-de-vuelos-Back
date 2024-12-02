@@ -5,10 +5,32 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8002:8002" #puerto correspondiente
+      - "8002:8002"
+    depends_on:
+      - pg-gestion-vuelos-a
+    networks:
+      - my_bridge_network
+
+  pg-gestion-vuelos-a:
+    image: postgres:15
+    container_name: pg-gestion-vuelos-a
+    restart: always
+    environment:
+      POSTGRES_DB: gestion_vuelos_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432" # Externo 5433, interno 5432
+    volumes:
+      - gestion_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
     networks:
       - my_bridge_network
 
 networks:
   my_bridge_network:
     external: true
+
+volumes:
+  gestion_data:
+
