@@ -2,6 +2,8 @@
 
 ## AIRLINE-API
 
+[![CI/CD pipeline](https://github.com/BrahiamAcosta/Gestion-de-vuelos-Back/actions/workflows/build.yml/badge.svg)](https://github.com/BrahiamAcosta/Gestion-de-vuelos-Back/actions/workflows/build.yml)
+
 [Spring Boot](http://projects.spring.io/spring-boot/) application
 
 ## GraphQL API Architecture
